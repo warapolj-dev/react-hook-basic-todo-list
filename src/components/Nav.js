@@ -11,13 +11,19 @@ function Nav() {
         top: 0,
         left: 0,
         right: 0,
-        backgroundColor: 'blue',
         height: 45,
         width: '100%'
       }}
+      className='bg-primary'
     >
       <Row style={{ marginLeft: 5, paddingTop: 8 }}>
-        <FaBars color='#fff' style={{ fontSize: 25 }} />
+        {/* <FaBars color='#fff' style={{ fontSize: 25 }} /> */}
+        <Link to='/' style={{ color: '#fff', marginLeft: 10 }}>
+          State
+        </Link>
+        <Link to='/reducer' style={{ color: '#fff', marginLeft: 10 }}>
+          Reducer
+        </Link>
       </Row>
     </div>
   )

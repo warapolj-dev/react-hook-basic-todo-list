@@ -2,28 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, Spinner, Alert, Pagination } from 'react-bootstrap'
 import api from '../api'
 
-const mockData = [
-  {
-    id: '1',
-    name: 'Font-End Developer',
-    description: 'react, vue, angular',
-    group: '001'
-  },
-  {
-    id: '2',
-    name: 'Back-End Developer',
-    description: 'node.js, php, java',
-    group: '001'
-  },
-  {
-    id: '3',
-    name: 'Fullstack Developer',
-    description: 'ci/cd, docker, linux, node.js, javascript',
-    group: '001'
-  }
-]
-
-function Home() {
+function State() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -43,37 +22,6 @@ function Home() {
     } catch (error) {
       Promise.all([setLoading(false), setError(true)])
     }
-  }
-
-  if (loading) {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          paddingTop: 50
-        }}
-      >
-        <Spinner animation='border' variant='primary' />
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          paddingTop: 25,
-          padding: 5
-        }}
-      >
-        <Alert variant='danger' style={{ width: '80%' }}>
-          Erorr: Please try again later.
-        </Alert>
-      </div>
-    )
   }
 
   function _renderCard(item) {
@@ -126,12 +74,47 @@ function Home() {
       }
     }
 
-    return <Pagination style={{ justifyContent: 'center' }}>{items}</Pagination>
+    return (
+      <Pagination style={{ justifyContent: 'center', marginTop: 10 }}>
+        {items}
+      </Pagination>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: 50
+        }}
+      >
+        <Spinner animation='border' variant='primary' />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: 25,
+          padding: 5
+        }}
+      >
+        <Alert variant='danger' style={{ width: '80%' }}>
+          Erorr: Please try again later.
+        </Alert>
+      </div>
+    )
   }
 
   return (
     <div style={{ padding: 5 }}>
-      <h3 style={{ textAlign: 'center' }}>ToDo List</h3>
+      <h3 style={{ textAlign: 'center' }}>ToDo List With State</h3>
 
       {data && _renderData()}
       {data && _renderPagination()}
@@ -139,4 +122,4 @@ function Home() {
   )
 }
 
-export default Home
+export default State
